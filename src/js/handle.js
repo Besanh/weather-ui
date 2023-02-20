@@ -1,4 +1,4 @@
-$(async function(){
+$(async function () {
     await initWeatherFirstRow()
 })
 
@@ -18,67 +18,90 @@ const initWeatherFirstRow = async () => {
                             <span class="date block">${moment().format('DD')}</span>
                             <span class="month">${moment().format('MMM')}</span>
                         </div>
-                    </div>
-                    <div class="card-body bg-blue bg-lighten-4 rounded-top">
-                        <ul class="list-inline text-right">
+                    </div>`
+            if (element.weather[0].main == "Clouds") {
+                str += `<div class="card-body bg-amber bg-lighten-4 rounded-top">`
+            } else if (element.weather[0].main == "Rain") {
+                str += `<div class="card-body bg-dark bg-lighten-4 rounded-top">`
+            } else {
+                str += `<div class="card-body bg-blue-grey bg-lighten-4 rounded-top">`
+            }
+            str += `<ul class="list-inline text-right">
                             <li><a data-action="reload"><i
                                         class="ft-rotate-cw font-medium-4 blue"></i></a></li>
                         </ul>
-                        <div class="animated-weather-icons text-center">
-                            <svg version="1.1" id="cloudDrizzleAlt1"
-                                class="climacon climacon_cloudDrizzleAlt climacon-blue climacon-darken-2 height-200"
-                                viewBox="15 15 70 70">
-                                <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleAlt">
-                                    <g
-                                        class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
-                                        <path
-                                            class="climacon_component climacon_component-stroke climacon_component-stroke_drizzle climacon_component-stroke_drizzle-left"
-                                            id="Drizzle-Left_1_1"
-                                            d="M56.969,57.672l-2.121,2.121c-1.172,1.172-1.172,3.072,0,4.242c1.17,1.172,3.07,1.172,4.24,0c1.172-1.17,1.172-3.07,0-4.242L56.969,57.672z">
-                                        </path>
-                                        <path
-                                            class="climacon_component climacon_component-stroke climacon_component-stroke_drizzle climacon_component-stroke_drizzle-middle"
-                                            d="M50.088,57.672l-2.119,2.121c-1.174,1.172-1.174,3.07,0,4.242c1.17,1.172,3.068,1.172,4.24,0s1.172-3.07,0-4.242L50.088,57.672z">
-                                        </path>
-                                        <path
-                                            class="climacon_component climacon_component-stroke climacon_component-stroke_drizzle climacon_component-stroke_drizzle-right"
-                                            d="M43.033,57.672l-2.121,2.121c-1.172,1.172-1.172,3.07,0,4.242s3.07,1.172,4.244,0c1.172-1.172,1.172-3.07,0-4.242L43.033,57.672z">
-                                        </path>
-                                    </g>
-                                    <g
-                                        class="climacon_wrapperComponent climacon_wrapperComponent-cloud">
-                                        <path
-                                            class="climacon_component climacon_component-stroke climacon_component-stroke_cloud"
-                                            d="M59.943,41.642c-0.696,0-1.369,0.092-2.033,0.205c-2.736-4.892-7.961-8.203-13.965-8.203c-8.835,0-15.998,7.162-15.998,15.997c0,5.992,3.3,11.207,8.177,13.947c0.276-1.262,0.892-2.465,1.873-3.445l0.057-0.057c-3.644-2.061-6.106-5.963-6.106-10.445c0-6.626,5.372-11.998,11.998-11.998c5.691,0,10.433,3.974,11.666,9.29c1.25-0.81,2.732-1.291,4.332-1.291c4.418,0,8,3.581,8,7.999c0,3.443-2.182,6.371-5.235,7.498c0.788,1.146,1.194,2.471,1.222,3.807c4.666-1.645,8.014-6.077,8.014-11.305C71.941,47.014,66.57,41.642,59.943,41.642z">
-                                        </path>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                        <div class="weather-details text-center">
-                            <span class="mt-2 block blue darken-2">${element.weather[0].main}</span>
-                            <span class="font-medium-4 text-bold-500 blue darken-4">${element.name_location}</span>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-blue bg-darken-3 py-3 border-0">
-                        <div class="row">
-                            <div class="col-4 text-center display-table-cell">
-                                <i class="me-wind font-large-1 white lighten-3 align-middle"></i> <span
-                                    class="white align-middle">${element.wind.speed}m/s</span>
-                            </div>
-                            <div class="col-4 text-center display-table-cell">
-                                <i class="me-sun2 font-large-1 white lighten-3 align-middle"></i> <span
-                                    class="white align-middle">${element.main.humidity}%</span>
-                            </div>
-                            <div class="col-4 text-center display-table-cell">
-                                <i class="me-thermometer font-large-1 white lighten-3 align-middle"></i>
-                                <span class="white align-middle">${temperature}°</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <div class="animated-weather-icons text-center">`
+            if (element.weather[0].main == "Clouds") {
+                str += `<svg version="1.1" id="wind1"
+                class="climacon climacon_wind climacon-amber climacon-darken-2 height-200"
+                viewBox="15 15 70 70">
+                <g class="climacon_iconWrap climacon_iconWrap-wind">
+                    <g class="climacon_wrapperComponent climacon_componentWrap-wind">
+                        <path
+                            class="climacon_component climacon_component-stroke climacon_component-wind climacon_component-wind_curl"
+                            d="M65.999,52L65.999,52h-3c-1.104,0-2-0.895-2-1.999c0-1.104,0.896-2,2-2h3c1.104,0,2-0.896,2-1.999c0-1.105-0.896-2-2-2s-2-0.896-2-2s0.896-2,2-2c0.138,0,0.271,0.014,0.401,0.041c3.121,0.211,5.597,2.783,5.597,5.959C71.997,49.314,69.312,52,65.999,52z">
+                        </path>
+                        <path
+                            class="climacon_component climacon_component-stroke climacon_component-wind"
+                            d="M55.999,48.001h-2h-6.998H34.002c-1.104,0-1.999,0.896-1.999,2c0,1.104,0.895,1.999,1.999,1.999h2h3.999h3h4h3h3.998h2c3.313,0,6,2.688,6,6c0,3.176-2.476,5.748-5.597,5.959C56.271,63.986,56.139,64,55.999,64c-1.104,0-2-0.896-2-2c0-1.105,0.896-2,2-2s2-0.896,2-2s-0.896-2-2-2h-2h-3.998h-3h-4h-3h-3.999h-2c-3.313,0-5.999-2.686-5.999-5.999c0-3.175,2.475-5.747,5.596-5.959c0.131-0.026,0.266-0.04,0.403-0.04l0,0h12.999h6.998h2c1.104,0,2-0.896,2-2s-0.896-2-2-2s-2-0.895-2-2c0-1.104,0.896-2,2-2c0.14,0,0.272,0.015,0.403,0.041c3.121,0.211,5.597,2.783,5.597,5.959C61.999,45.314,59.312,48.001,55.999,48.001z">
+                        </path>
+                    </g>
+                </g>
+            </svg>`
+            } else if (element.weather[0].main == "Rain") {
+                str += `<svg version="1.1" id="wind1"
+                class="climacon climacon_wind climacon-amber climacon-darken-2 height-200"
+                viewBox="15 15 70 70">
+                <g class="climacon_iconWrap climacon_iconWrap-wind">
+                    <g class="climacon_wrapperComponent climacon_componentWrap-wind">
+                        <path
+                            class="climacon_component climacon_component-stroke climacon_component-wind climacon_component-wind_curl"
+                            d="M65.999,52L65.999,52h-3c-1.104,0-2-0.895-2-1.999c0-1.104,0.896-2,2-2h3c1.104,0,2-0.896,2-1.999c0-1.105-0.896-2-2-2s-2-0.896-2-2s0.896-2,2-2c0.138,0,0.271,0.014,0.401,0.041c3.121,0.211,5.597,2.783,5.597,5.959C71.997,49.314,69.312,52,65.999,52z">
+                        </path>
+                        <path
+                            class="climacon_component climacon_component-stroke climacon_component-wind"
+                            d="M55.999,48.001h-2h-6.998H34.002c-1.104,0-1.999,0.896-1.999,2c0,1.104,0.895,1.999,1.999,1.999h2h3.999h3h4h3h3.998h2c3.313,0,6,2.688,6,6c0,3.176-2.476,5.748-5.597,5.959C56.271,63.986,56.139,64,55.999,64c-1.104,0-2-0.896-2-2c0-1.105,0.896-2,2-2s2-0.896,2-2s-0.896-2-2-2h-2h-3.998h-3h-4h-3h-3.999h-2c-3.313,0-5.999-2.686-5.999-5.999c0-3.175,2.475-5.747,5.596-5.959c0.131-0.026,0.266-0.04,0.403-0.04l0,0h12.999h6.998h2c1.104,0,2-0.896,2-2s-0.896-2-2-2s-2-0.895-2-2c0-1.104,0.896-2,2-2c0.14,0,0.272,0.015,0.403,0.041c3.121,0.211,5.597,2.783,5.597,5.959C61.999,45.314,59.312,48.001,55.999,48.001z">
+                        </path>
+                    </g>
+                </g>
+            </svg>`
+            } else if (element.weather[0].main == "Sunny") {
+                str += `< svg version = "1.1" id = "wind2" class="climacon climacon_wind climacon-amber climacon-darken-2 height-100" viewBox = "15 15 70 70" >
+                    <g class="climacon_iconWrap climacon_iconWrap-wind">
+                        <g class="climacon_wrapperComponent climacon_componentWrap-wind">
+                            <path class="climacon_component climacon_component-stroke climacon_component-wind climacon_component-wind_curl" d="M65.999,52L65.999,52h-3c-1.104,0-2-0.895-2-1.999c0-1.104,0.896-2,2-2h3c1.104,0,2-0.896,2-1.999c0-1.105-0.896-2-2-2s-2-0.896-2-2s0.896-2,2-2c0.138,0,0.271,0.014,0.401,0.041c3.121,0.211,5.597,2.783,5.597,5.959C71.997,49.314,69.312,52,65.999,52z">
+                            </path>
+                            <path class="climacon_component climacon_component-stroke climacon_component-wind" d="M55.999,48.001h-2h-6.998H34.002c-1.104,0-1.999,0.896-1.999,2c0,1.104,0.895,1.999,1.999,1.999h2h3.999h3h4h3h3.998h2c3.313,0,6,2.688,6,6c0,3.176-2.476,5.748-5.597,5.959C56.271,63.986,56.139,64,55.999,64c-1.104,0-2-0.896-2-2c0-1.105,0.896-2,2-2s2-0.896,2-2s-0.896-2-2-2h-2h-3.998h-3h-4h-3h-3.999h-2c-3.313,0-5.999-2.686-5.999-5.999c0-3.175,2.475-5.747,5.596-5.959c0.131-0.026,0.266-0.04,0.403-0.04l0,0h12.999h6.998h2c1.104,0,2-0.896,2-2s-0.896-2-2-2s-2-0.895-2-2c0-1.104,0.896-2,2-2c0.14,0,0.272,0.015,0.403,0.041c3.121,0.211,5.597,2.783,5.597,5.959C61.999,45.314,59.312,48.001,55.999,48.001z">
+                            </path>
+                        </g>
+                    </g>
+</svg > `
+            }
+            str += `</div >
+    <div class="weather-details text-center">
+        <span class="mt-2 block blue darken-2">${element.weather[0].main}</span>
+        <span class="font-medium-4 text-bold-500 blue darken-4">${element.name_location}</span>
+    </div>
+                    </div >
+    <div class="card-footer bg-blue bg-darken-3 py-3 border-0">
+        <div class="row">
+            <div class="col-4 text-center display-table-cell">
+                <i class="me-wind font-large-1 white lighten-3 align-middle"></i> <span
+                    class="white align-middle">${element.wind.speed}m/s</span>
             </div>
-        </div>`
+            <div class="col-4 text-center display-table-cell">
+                <i class="me-sun2 font-large-1 white lighten-3 align-middle"></i> <span
+                    class="white align-middle">${element.main.humidity}%</span>
+            </div>
+            <div class="col-4 text-center display-table-cell">
+                <i class="me-thermometer font-large-1 white lighten-3 align-middle"></i>
+                <span class="white align-middle">${temperature}°</span>
+            </div>
+        </div>
+    </div>
+                </div >
+            </div >
+        </div > `
             $("#first-row").append(str)
         });
     })
