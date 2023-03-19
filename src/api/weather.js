@@ -9,7 +9,7 @@ const apiGetWeatherData = () => {
 		dataType: "json",
 		async: true,
 	}).fail((request, status, error) => {
-		alert("error", error)
+		console("error", error)
 	});
 };
 
@@ -24,6 +24,6 @@ const apiGetWeatherHistorical = () => {
 		dataType: "json",
 		async: true,
 	}).fail((request, status, error) => {
-		alert("error", error)
+		console("error", error)
 	});
 }
